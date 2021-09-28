@@ -15,7 +15,7 @@ public class Main {
 //        MainInnerClass.innerClassesExample();
 
 //        Abstract Classes
-        Abstract.mainAbstract();
+//        Abstract.mainAbstract();
 
 
 
