@@ -2,7 +2,7 @@ package com.company.challenges.abstraction;
 
 public class MyLinkedList implements NodeList {
 
-    private ListItem root = null;
+    private ListItem root;
 
     public MyLinkedList(ListItem root) {
         this.root = root;
@@ -53,6 +53,31 @@ public class MyLinkedList implements NodeList {
 
     @Override
     public boolean removeItem(ListItem item) {
+        if (item != null){
+            System.out.println("Deleting item: " + item.getValue());
+        }
+        ListItem currentItem = this.root;
+        while (currentItem != null){
+            int comparison = currentItem.compareTo(item);
+            if (comparison == 0) {
+                //found the item to delete
+                if (currentItem == this.root){
+                    this.root = currentItem.next();
+                } else {
+                    currentItem.previous().setNext(currentItem.next());
+                    if (currentItem.next() != null){
+                        currentItem.next().setPrevious(currentItem.previous());
+                    }
+                }
+                return true;
+            } else if (comparison < 0){
+                currentItem = currentItem.next();
+            } else {
+                //we are at an item greater than the one to be deleted
+                //so the item is not on the list.
+                return false;
+            }
+        }
         return false;
     }
 
